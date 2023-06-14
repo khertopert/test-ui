@@ -1,5 +1,6 @@
 
-<div *ngIf="!hidden">
-  <span>Hi, i am Test component</span>
+<div data-testid="description-text">
+  <span>{{ hidden? '': 'Hi, i am Test component'}}</span>
 </div>
-<button (click)="hidden = !hidden">hidden</button>
+<button data-testid="asghar"></button>
+<button data-testid="hidden-button" (click)="hidden = !hidden">hidden</button>

@@ -7,7 +7,6 @@ import { NgIf } from '@angular/common';
   imports: [NgIf],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent {
   hidden = false;
