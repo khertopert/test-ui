@@ -6,8 +6,8 @@ const hidden = ref(false);
 </script>
 
 <template>
-    <div v-if="!hidden">
+    <div data-testid="description-text" v-if="!hidden">
         <span>Hi, i am Test component</span>
     </div>
-    <button @click="() => hidden = !hidden">hidden</button>
+    <button data-testid="hidden-button" @click="() => hidden = !hidden">hidden</button>
 </template>
