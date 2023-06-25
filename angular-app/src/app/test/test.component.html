@@ -1,6 +1,7 @@
 
 <div data-testid="description-text">
   <span>{{ hidden? '': 'Hi, i am Test component'}}</span>
+  <div>this is the content: </div>
+  <ng-content select="button"></ng-content>
 </div>
-<button data-testid="asghar"></button>
 <button data-testid="hidden-button" (click)="hidden = !hidden">hidden</button>
