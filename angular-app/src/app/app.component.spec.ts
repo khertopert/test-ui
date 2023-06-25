@@ -1,14 +1,48 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HarnessLoader } from "@angular/cdk/testing";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
+import { ButtonTestHarness } from "./button-test-harness";
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [AppComponent]
-  }));
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let loader: HarnessLoader;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AppComponent]
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    loader = TestbedHarnessEnvironment.loader(fixture);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
+  });
+
+  describe('should show alert with input value when any templateButton is called', () => {
+    let spy!: jasmine.Spy;
+
+    beforeEach(() => {
+      component.value = '123';
+      spy = spyOn(window, 'alert');
+    });
+
+    [1, 2, 3, 4, 5].forEach(counter => {
+      it('for templateButton' + counter, async () => {
+        spy.calls.reset();
+
+        const templateButton = await loader.getHarness(ButtonTestHarness.with({ testId: 'templateButton' + counter }));
+
+        await templateButton.click();
+
+        expect(spy).toHaveBeenCalledTimes(1);
+        expect(spy).toHaveBeenCalledWith(component.value);
+      });
+    });
   });
 });

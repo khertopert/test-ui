@@ -1,7 +1,9 @@
 
 <div data-testid="description-text">
   <span>{{ hidden? '': 'Hi, i am Test component'}}</span>
-  <div>this is the content: </div>
   <ng-content select="button"></ng-content>
 </div>
+<ng-container [ngTemplateOutlet]="myTemplate" [ngTemplateOutletContext]="{ data: item }"
+*ngFor="let item of [1, 2, 3, 4, 5]">
+</ng-container>
 <button data-testid="hidden-button" (click)="hidden = !hidden">hidden</button>

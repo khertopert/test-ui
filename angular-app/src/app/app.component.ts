@@ -12,4 +12,8 @@ import { TestComponent } from "./test/test.component";
 })
 export class AppComponent {
   value = '';
+
+  testTemplateCilck() {
+    alert(this.value);
+  }
 }

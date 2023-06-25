@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgFor, NgTemplateOutlet],
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent {
   hidden = false;
+  @Input() myTemplate!: TemplateRef<any>;
 }

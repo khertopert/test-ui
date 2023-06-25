@@ -4,7 +4,12 @@
 <div>
   current value is: {{value}}
 </div>
-<app-test>
+<app-test [myTemplate]="myTemplate1">
   <span>my caption: </span>
   <button>test</button>
 </app-test>
+
+<ng-template #myTemplate1 let-counter="data">
+  <h1>test template: {{counter}}</h1>
+  <button [attr.data-testid]="'templateButton' + counter" (click)="testTemplateCilck()">Test My Template</button>
+</ng-template>
