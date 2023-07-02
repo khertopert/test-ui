@@ -6,7 +6,7 @@
 </div>
 <app-test [myTemplate]="myTemplate1">
   <span>my caption: </span>
-  <button>test</button>
+  <button data-testid="testButton" (click)="addCounter()">test</button>
 </app-test>
 
 <ng-template #myTemplate1 let-counter="data">

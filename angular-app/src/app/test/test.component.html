@@ -1,7 +1,9 @@
 
 <div data-testid="description-text">
-  <span>{{ hidden? '': 'Hi, i am Test component'}}</span>
-  <ng-content select="button"></ng-content>
+  <span>{{ hidden? '': 'Hi, i am Test component: ' + (counter$ | async)}}</span>
+  <div>
+    <ng-content select="button"></ng-content>
+  </div>
 </div>
 <ng-container [ngTemplateOutlet]="myTemplate" [ngTemplateOutletContext]="{ data: item }"
 *ngFor="let item of [1, 2, 3, 4, 5]">

@@ -3,15 +3,20 @@ import { AppComponent } from './app.component';
 import { HarnessLoader } from "@angular/cdk/testing";
 import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 import { ButtonTestHarness } from "./button-test-harness";
+import { StateService } from "./state.service";
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let loader: HarnessLoader;
+  let stateService: StateService = jasmine.createSpyObj(['setCounter']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppComponent]
+      imports: [AppComponent],
+      providers: [
+        { provide: StateService, useValue: stateService }
+      ]
     });
 
     fixture = TestBed.createComponent(AppComponent);
@@ -44,5 +49,15 @@ describe('AppComponent', () => {
         expect(spy).toHaveBeenCalledWith(component.value);
       });
     });
+  });
+
+  it('should call setCounter and increase counter when test button is clicked', async () => {
+    Object.defineProperty(stateService, 'counterValue', { value: 3 });
+    const testButton = await loader.getHarness(ButtonTestHarness.with({ testId: 'testButton' }));
+
+    await testButton.click();
+
+    expect(stateService.setCounter).toHaveBeenCalledTimes(1);
+    expect(stateService.setCounter).toHaveBeenCalledWith(4);
   });
 });
