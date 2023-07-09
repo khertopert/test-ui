@@ -6,6 +6,7 @@ import { HarnessLoader } from "@angular/cdk/testing";
 import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 import { ButtonTestHarness } from "../button-test-harness";
 import { DivDisplayTestHarness } from "../div-display-test-harness";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TestComponent', () => {
   let component: TestComponent;
@@ -14,7 +15,7 @@ describe('TestComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TestComponent]
+      imports: [TestComponent, HttpClientTestingModule]
     });
     fixture = TestBed.createComponent(TestComponent);
     loader = TestbedHarnessEnvironment.loader(fixture);

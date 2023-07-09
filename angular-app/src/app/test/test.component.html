@@ -5,7 +5,9 @@
     <ng-content select="button"></ng-content>
   </div>
 </div>
+<!-- <span *ngIf="hidden">withPromise: {{ withPromise$ | async }}</span> -->
+<span *ngIf="hidden">withObservable: {{ withObservable$ | async }}</span>
 <ng-container [ngTemplateOutlet]="myTemplate" [ngTemplateOutletContext]="{ data: item }"
 *ngFor="let item of [1, 2, 3, 4, 5]">
 </ng-container>
-<button data-testid="hidden-button" (click)="hidden = !hidden">hidden</button>
+<button data-testid="hidden-button" (click)="hidden = !hidden;">hidden</button>
