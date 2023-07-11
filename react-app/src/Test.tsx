@@ -1,4 +1,5 @@
-import { useState, Children, isValidElement, Fragment } from "react";
+import { useState, Children, isValidElement, Fragment, useContext, useEffect } from "react";
+import { GlobalStore } from "./main";
 
 interface TestProps {
     myTemplate?: (counter: number) => React.ReactElement | React.ReactElement[];
@@ -7,10 +8,11 @@ interface TestProps {
 
 export function Test({ children, myTemplate }: TestProps) {
     const [hidden, setHidden] = useState(false);
+    const store = useContext(GlobalStore);
 
     return <>
         {!hidden && <div data-testid="description-text">
-            <span>Hi, i am Test component</span>
+            <span>Hi, i am Test component: {store.counter}</span>
             {Children.toArray(children).filter(child => 
                 isValidElement(child) && child.type === 'button')}
         </div>}

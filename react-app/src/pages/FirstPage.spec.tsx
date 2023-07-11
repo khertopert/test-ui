@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import App from "./App";
+import FirstPage from "./FirstPage";
 
 describe('should show alert with input value when any templateButton is called', () => {
     let spy: jest.SpyInstance;
@@ -7,7 +7,7 @@ describe('should show alert with input value when any templateButton is called',
     let input: HTMLInputElement;
 
     beforeEach(() => {
-        const { getByTestId,  } = render(<App></App>);
+        const { getByTestId,  } = render(<FirstPage></FirstPage>);
         getById = getByTestId;
         spy = jest.spyOn(window, 'alert').mockReturnValue();
         input = getById('input');
