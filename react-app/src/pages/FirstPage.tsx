@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Test } from "../Test";
-import { GlobalStore } from "../main";
-import { storeSetter } from "../App";
+import { useDispatch } from "react-redux";
+import { increase } from "../state/slice/counter-slice";
 
 export default function FirstPage() {
   const [value, setValue] = useState('');
-  const store = useContext(GlobalStore);
+  const dispatch = useDispatch();
 
   console.log("first page render");
   
@@ -25,7 +25,7 @@ export default function FirstPage() {
   }
 
   const addCounter = () => {
-    storeSetter({ counter: store.counter + 1 });
+    dispatch(increase(1));
   }
   
   return (

@@ -1,19 +1,15 @@
-import { useState } from "react";
+import { Provider } from "react-redux";
 import './App.css';
-import { GlobalStore, Store } from "./main";
 import FirstPage from "./pages/FirstPage";
-
-export let storeSetter: (store: Store) => void;
+import { ReduxStore } from "./state/store";
 
 function App() {
-  const [storeState, setStoreState] = useState<Store>({ counter: 0 });
-  console.log("app rendered");
 
-  storeSetter = setStoreState;
+  console.log("app render");
 
-  return <GlobalStore.Provider value={storeState}>
+  return <Provider store={ReduxStore}>
     <FirstPage></FirstPage>
-  </GlobalStore.Provider>;
+  </Provider>;
 }
 
 export default App;
