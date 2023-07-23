@@ -37,6 +37,9 @@ export default function FirstPage() {
         current value is: {value}
       </div>
       <div>
+        basket details:
+      </div>
+      <div>
         <Test myTemplate={myTemplate1}>
           <span>my caption: </span>
           <button onClick={addCounter}>test</button>
